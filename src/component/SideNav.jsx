@@ -4,29 +4,29 @@ import { Link } from "react-router-dom";
 export default function SideNav({ isSideOpen, setSideOpen }) {
 	let el = useRef(null);
 	let instance = useRef(null);
-	
+
 	useEffect(() => {
-		if(el.current) {
+		if (el.current) {
 			instance.current = M.Sidenav.init(el.current, {
-				edge: "right", 
+				edge: "right",
 				onCloseStart: () => setSideOpen(false)
 			});
 		}
 
 		return () => {
-			if(instance.current) {
+			if (instance.current) {
 				instance.current.destroy();
 			}
 		};
 	}, []);
 
 	useEffect(() => {
-		if(isSideOpen) {
+		if (isSideOpen) {
 			instance.current?.open();
 		} else {
 			instance.current?.close();
 		}
-	}, [ isSideOpen ]);
+	}, [isSideOpen]);
 
 	return (
 		<ul className="sidenav" ref={el}>
