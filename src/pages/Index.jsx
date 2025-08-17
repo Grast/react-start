@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { menuList } from "../lib/menu";
 
 export default function Index() {
 	const style = {
@@ -14,8 +15,9 @@ export default function Index() {
 				</blockquote>
 				<div className="divider" />
 				<div className="collection">
-					<Link to="/collapsible" className="collection-item">Collapsible</Link>
-					<Link to="/form-select" className="collection-item">Form Select</Link>
+					{menuList.map(menuItem => (
+						<Link to={menuItem?.["uri"]} className="collection-item">{menuItem?.["text"]}</Link>
+					))}
 				</div>
 			</div>
 		</div>

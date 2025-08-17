@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { menuList } from "../lib/menu";
 
 export default function SideNav({ isSideOpen, setSideOpen }) {
 	let el = useRef(null);
@@ -31,8 +32,9 @@ export default function SideNav({ isSideOpen, setSideOpen }) {
 	return (
 		<ul className="sidenav" ref={el}>
 			<li><a className="subheader">React Start</a></li>
-			<li><Link to="/collapsible" className="waves-effect" onClick={() => instance.current.close()}>Collapsible Example</Link></li>
-			<li><Link to="/form-select" className="waves-effect" onClick={() => instance.current.close()}>FormSelect Example</Link></li>
+			{menuList.map(menuItem => (
+				<li key={menuItem}><Link to={menuItem?.["uri"]} className="waves-effect" onClick={() => instance.current.close()}>{menuItem?.["text"]}</Link></li>
+			))}
 		</ul>
 	);
 };
